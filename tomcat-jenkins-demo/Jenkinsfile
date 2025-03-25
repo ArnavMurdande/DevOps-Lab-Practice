@@ -9,14 +9,23 @@ pipeline {
     }
     stage('Deploy to Tomcat') {
       steps {
-        sh 'mvn tomcat7:deploy -DskipTests'
+        // Deploy WAR to Tomcat
+        sh 'mvn tomcat7:deploy'
       }
     }
   }
 
   post {
     always {
-      cleanWs() // Clean workspace after build
+      // Post-build actions (e.g., cleanup, notifications)
+      cleanWs() // Clean workspace
+      // Add other actions here (e.g., email notifications)
+    }
+    success {
+      // Actions to run on success
+    }
+    failure {
+      // Actions to run on failure
     }
   }
 }
