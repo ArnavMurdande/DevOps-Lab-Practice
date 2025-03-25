@@ -1,0 +1,22 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        sh 'mvn clean install'
+      }
+    }
+    stage('Deploy to Tomcat') {
+      steps {
+        sh 'mvn tomcat7:deploy -DskipTests'
+      }
+    }
+  }
+
+  post {
+    always {
+      cleanWs() // Clean workspace after build
+    }
+  }
+}
