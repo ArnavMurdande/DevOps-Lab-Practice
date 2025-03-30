@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', 
+                    url: 'https://github.com/your-username/ansible-jenkins-demo.git',
+                    credentialsId: 'github-creds'  // Optional for private repos
+            }
+        }
+        stage('Run Ansible Playbook') {
+            steps {
+                ansiblePlaybook(
+                    playbook: 'playbook.yml',
+                    inventory: 'inventory.ini',
+                    extras: '--become'
+                )
+            }
+        }
+    }
+}
