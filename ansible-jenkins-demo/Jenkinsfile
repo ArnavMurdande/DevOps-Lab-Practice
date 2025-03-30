@@ -4,17 +4,18 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main', 
-                    url: 'https://github.com/your-username/ansible-jenkins-demo.git',
-                    credentialsId: 'github-creds'  // Optional for private repos
+                    url: 'https://github.com/ArnavMurdande/DevOps-Lab-Practice.git'
             }
         }
         stage('Run Ansible Playbook') {
             steps {
-                ansiblePlaybook(
-                    playbook: 'playbook.yml',
-                    inventory: 'inventory.ini',
-                    extras: '--become'
-                )
+                dir('ansible-jenkins-demo') {  // Navigate to the subdirectory
+                    ansiblePlaybook(
+                        playbook: 'playbook.yml',
+                        inventory: 'inventory.ini',
+                        extras: '--become'
+                    )
+                }
             }
         }
     }
