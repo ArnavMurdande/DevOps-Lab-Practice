@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Run Ansible Playbook') {
             steps {
-                dir('ansible-jenkins-demo') {  // Navigate to the subdirectory
+                dir('ansible-jenkins-demo') {
                     ansiblePlaybook(
                         playbook: 'playbook.yml',
                         inventory: 'inventory.ini',
