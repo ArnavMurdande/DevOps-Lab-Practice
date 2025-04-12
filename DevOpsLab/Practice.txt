@@ -1,3 +1,1 @@
-This is practice file for Exp 2 in GitHub and GitBash !!
-By Arnav Murdande 22CE1047
-  
+This is a practice file for Git experiment.
