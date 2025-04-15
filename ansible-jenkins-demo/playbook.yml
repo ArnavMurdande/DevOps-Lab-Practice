@@ -1,7 +1,6 @@
 ---
-- name: Test Ansible Playbook
-  hosts: web_servers
+- name: Test Ansible Connectivity
+  hosts: all
   tasks:
-    - name: Print a message
-      ansible.builtin.debug:
-        msg: "Hello from Ansible + Jenkins!"
+    - name: Ping Hosts
+      ansible.builtin.ping:
