@@ -1,0 +1,177 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0; /* Light grey background for the page */
+  font-family: sans-serif;
+}
+
+.calculator {
+  background-color: #e0e0e0; /* Lighter grey for calculator body */
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 320px; /* Adjust width as needed */
+}
+
+.display-container {
+  background-color: #ffffff; /* White background for display area */
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.previous-answer {
+  color: #888;
+  font-size: 0.75em;
+  text-align: right;
+  height: 15px; /* Reserve space */
+  margin-bottom: 5px;
+}
+
+#display {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  text-align: right;
+  font-size: 2.5em; /* Larger font for the main display */
+  padding: 5px 0;
+  box-sizing: border-box; /* Include padding in width calculation */
+  color: #333;
+  height: 50px; /* Set a fixed height */
+}
+
+.buttons-grid {
+  display: grid;
+  /* Adjust grid template columns to match the image layout */
+  grid-template-columns: repeat(4, 1fr); /* Create 4 equal columns */
+  gap: 1px; /* Minimal gap between buttons */
+  background-color: #ccc; /* Grid line color */
+}
+
+.buttons-grid button {
+  border: none;
+  padding: 15px; /* Adjust padding for button size */
+  font-size: 1.4em; /* Larger font size for buttons */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-grid button:active {
+  filter: brightness(0.9);
+}
+
+/* Specific Button Styles */
+.clear-entry {
+  background-color: #ff9800; /* Orange */
+  grid-column: span 3; /* Make it span 3 columns */
+  border-radius: 5px; /* Slightly rounded corners */
+  margin: 5px; /* Add margin to separate */
+}
+
+.clear-entry:hover {
+  background-color: #f57c00; /* Darker orange on hover */
+}
+
+/* Number Pad Area (Example, adjust if needed) */
+/* Selectors for number buttons (0-9, .) */
+.buttons-grid button:not(.operator):not(.clear-entry):not(.equals) {
+ background-color: #2196f3; /* Blue */
+ border-radius: 50%; /* Circular shape */
+ width: 60px;  /* Fixed width */
+ height: 60px; /* Fixed height */
+ margin: auto; /* Center the circle within the grid cell */
+ margin-top: 5px;
+ margin-bottom: 5px;
+}
+.buttons-grid button:not(.operator):not(.clear-entry):not(.equals):hover {
+ background-color: #1976d2; /* Darker blue */
+}
+
+
+/* Operator Buttons (+, -, x, /) */
+.operator {
+  background-color: #8bc34a; /* Green */
+  border-radius: 50%; /* Circular */
+  width: 60px;  /* Fixed width */
+  height: 60px; /* Fixed height */
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.operator:hover {
+  background-color: #689f38; /* Darker green */
+}
+
+/* Equals Button */
+.equals {
+  background-color: #9c27b0; /* Purple */
+  border-radius: 50%; /* Circular */
+  width: 60px;  /* Fixed width */
+  height: 60px; /* Fixed height */
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.equals:hover {
+  background-color: #7b1fa2; /* Darker purple */
+}
+
+/* Adjusting layout for the number/operator groups */
+/* This uses grid-column-start/end which might need tweaking based on exact element order */
+.buttons-grid button:nth-child(n+2):nth-child(-n+4) { /* Numbers 7,8,9 */
+  /* Styles if needed for this row */
+}
+.buttons-grid button:nth-child(5) { /* Operator - */
+ grid-column: 4;
+ grid-row: 2;
+}
+/* Add similar rules for other operators if they are not naturally flowing */
+.buttons-grid button:nth-child(1) { /* Clear Entry */
+  grid-column: 1 / 4; /* Span columns 1 to 3 */
+  grid-row: 1;
+  border-radius: 5px;
+  width: auto; /* Override fixed width */
+  height: auto; /* Override fixed height */
+}
+.buttons-grid button:nth-child(2) { /* Operator + */
+ grid-column: 4;
+ grid-row: 1;
+}
+
+.buttons-grid button:nth-child(3) { grid-column: 1; grid-row: 2;} /* 7 */
+.buttons-grid button:nth-child(4) { grid-column: 2; grid-row: 2;} /* 8 */
+.buttons-grid button:nth-child(5) { grid-column: 3; grid-row: 2;} /* 9 */
+.buttons-grid button:nth-child(6) { grid-column: 4; grid-row: 2;} /* - */
+
+.buttons-grid button:nth-child(7) { grid-column: 1; grid-row: 3;} /* 4 */
+.buttons-grid button:nth-child(8) { grid-column: 2; grid-row: 3;} /* 5 */
+.buttons-grid button:nth-child(9) { grid-column: 3; grid-row: 3;} /* 6 */
+.buttons-grid button:nth-child(10) { grid-column: 4; grid-row: 3;} /* * */
+
+.buttons-grid button:nth-child(11) { grid-column: 1; grid-row: 4;} /* 1 */
+.buttons-grid button:nth-child(12) { grid-column: 2; grid-row: 4;} /* 2 */
+.buttons-grid button:nth-child(13) { grid-column: 3; grid-row: 4;} /* 3 */
+.buttons-grid button:nth-child(14) { grid-column: 4; grid-row: 4;} /* / */
+
+.buttons-grid button:nth-child(15) { grid-column: 1; grid-row: 5;} /* 0 */
+.buttons-grid button:nth-child(16) { grid-column: 2; grid-row: 5;} /* . */
+.buttons-grid button:nth-child(17) { grid-column: 3; grid-row: 5;} /* = */
+
+/* --- Adjusting spacing visually --- */
+/* Using padding on the grid container might be better */
+.buttons-grid {
+  padding: 10px; /* Add padding around the grid */
+  background-color: #aabbcc; /* Background color for the number pad area */
+  border-bottom-left-radius: 10px; /* Match calculator rounding */
+   /* The right column operators will need a separate container or specific margins */
+}
+
+/* Let's refine the layout using grid areas or more precise column/row assignments */
+/* This is getting complex, a simpler grid definition might be better */
+
+/* --- Revised
